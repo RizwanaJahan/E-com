@@ -1,0 +1,52 @@
+{% extends 'ecom/base.html' %}
+{% block title %} Main Page {% endblock %}
+{% load static %}
+{% block Body %}
+<style>
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#manu .main{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 0px;
+}
+
+#manu .item{
+
+    width: 18%;
+    padding-top: 5px;
+    border: 1px solid gray;
+
+
+}
+#manu .item img{
+    height: 180px;}
+    </style>
+<!--slide 1-->
+<br>
+<section id="manu">
+  <div class="container">
+      <h2 >Top wear of The Day</h2>
+      <br>
+
+  <div class="main">
+      {% for t in product%}
+  <div class="item">
+      <a href="{% url 'product' t.pk %}"> <img src="{{t.image}}" alt="" height="200px"> </a> <br><span class="fw-bold">{{t.name}}</span><br><span class="fs-5">Price: {{t.price}}</span><br>
+      <button><a href="">Add Cart</a> </button>
+      <button style="background-color:green; margin-left: 10px;"><a href="{% url 'checkout' %}" >View Cart</a> </button>
+
+    </div>
+        {% endfor %}
+  </div>
+
+</div>
+</section>
+
+
+{% endblock %}

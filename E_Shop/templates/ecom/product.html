@@ -1,0 +1,53 @@
+{% extends 'ecom/base.html' %}
+{% block title %} Product {% endblock %}
+{% load static %}
+{% block Body %}
+<style>
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#manu .main{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 0px;
+}
+
+#manu .item{
+
+    width: 18%;
+    padding-top: 5px;
+    border: 1px solid gray;
+
+
+}
+#manu .item img{
+    height: 180px;}
+    </style>
+
+<br>
+<section id="manu">
+  <div class="container">
+      <h2 >Mobail</h2>
+      <br>
+
+      <div class="main">
+          {% for t in product%}
+
+          <div class="item">
+               <img src="{{t.image.url}}" alt="" height="200px"> <br><span class="fw-bold">{{t.name}}</span><br><span class="fs-5">Price: {{t.price}}</span><br>
+              <form action="/cart" method="get">
+                  <input type="text" name ="prod_id" value="{{t.pk}}">
+              <button><a href="">Add Cart</a> </button>
+              </form>
+              <button style="background-color:green; margin-left: 10px;"><a href="{% url 'checkout' %}" >View Cart</a> </button>
+          </div>
+            {% endfor %}
+      </div>
+  </div>
+</section>
+
+{% endblock %}
